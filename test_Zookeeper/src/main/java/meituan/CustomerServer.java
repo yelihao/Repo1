@@ -31,7 +31,7 @@ public class CustomerServer {
                 try {
                     getShopList();
                 } catch (Exception e) {
-                    e.printStackTrace();
+
                 }
             }
         });

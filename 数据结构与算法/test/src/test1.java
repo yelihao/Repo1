@@ -2,6 +2,7 @@ import org.junit.Test;
 
 import javax.swing.*;
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 //计算夜宵
 public class test1 {
@@ -29,11 +30,24 @@ public class test1 {
     }
 
     public static void main(String[] args) {
-        int[] a ={25,5};
-        int[] b ={3,5,10,7,5};
-
-        int s = calculatenum(a, b);
-        System.out.println(s);
+        String s = "abcdef";
+        char[] chars = s.toCharArray();
+        int i = chars.length-1;
+        int flag = 1;
+        int re = 0;
+        while (i>=0){
+            if (chars[i] == ' '){
+                i--;
+            }
+            if (chars[i] != ' '){
+                re++; //改变flag
+                flag=0;
+                continue;
+            }
+            if (flag == 0){
+                break;
+            }
+        }
     }
 
 

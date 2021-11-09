@@ -30,24 +30,6 @@ public class test1 {
     }
 
     public static void main(String[] args) {
-        String s = "abcdef";
-        char[] chars = s.toCharArray();
-        int i = chars.length-1;
-        int flag = 1;
-        int re = 0;
-        while (i>=0){
-            if (chars[i] == ' '){
-                i--;
-            }
-            if (chars[i] != ' '){
-                re++; //改变flag
-                flag=0;
-                continue;
-            }
-            if (flag == 0){
-                break;
-            }
-        }
     }
 
 

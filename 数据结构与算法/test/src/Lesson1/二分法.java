@@ -9,8 +9,7 @@ public class 二分法 {
     public static int findmin(int[] arr){
         if (arr[0]<arr[1]){
             return 0;
-        }
-        int length = arr.length-1;
+        }        int length = arr.length-1;
         if (arr[length]<arr[length-1]){
             return length;
         }
@@ -29,6 +28,7 @@ public class 二分法 {
             }
         }
         return -1;
+
     }
 
     public static void main(String[] args) {

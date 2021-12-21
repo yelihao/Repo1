@@ -1,0 +1,21 @@
+#服务器配置
+server:
+  port: 8090
+
+
+#数据源配置
+spring:
+  datasource:
+    name: druid
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/springbootdata?characterEncoding=utf-8&serverTimezone=UTC
+    username: root
+    password: 123
+
+#整合mybatis
+mybatis:
+  #扫描文件，扫描mapper包下，所有.xml文件
+  mapper-locations: classpath:mapper/*Mapper.xml  #声明Mybatis映射文件的所在的位置
+
+
+

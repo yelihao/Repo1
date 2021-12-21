@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lagou.bootmybatis.dao.CourseDao">
+
+    <resultMap type="com.lagou.bootmybatis.entity.Course" id="CourseMap">
+        <result property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="courseName" column="course_name" jdbcType="VARCHAR"/>
+        <result property="brief" column="brief" jdbcType="VARCHAR"/>
+        <result property="price" column="price" jdbcType="VARCHAR"/>
+        <result property="priceTag" column="price_tag" jdbcType="VARCHAR"/>
+        <result property="discounts" column="discounts" jdbcType="VARCHAR"/>
+        <result property="discountsTag" column="discounts_tag" jdbcType="VARCHAR"/>
+        <result property="courseDescriptionMarkDown" column="course_description_mark_down" jdbcType="VARCHAR"/>
+        <result property="courseDescription" column="course_description" jdbcType="VARCHAR"/>
+        <result property="courseImgUrl" column="course_img_url" jdbcType="VARCHAR"/>
+        <result property="isNew" column="is_new" jdbcType="INTEGER"/>
+        <result property="isNewDes" column="is_new_des" jdbcType="VARCHAR"/>
+        <result property="lastOperatorId" column="last_operator_id" jdbcType="INTEGER"/>
+        <result property="autoOnlineTime" column="auto_online_time" jdbcType="TIMESTAMP"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="isDel" column="is_del" jdbcType="INTEGER"/>
+        <result property="totalDuration" column="total_duration" jdbcType="INTEGER"/>
+        <result property="courseListImg" column="course_list_img" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="sortNum" column="sort_num" jdbcType="INTEGER"/>
+        <result property="previewFirstField" column="preview_first_field" jdbcType="VARCHAR"/>
+        <result property="previewSecondField" column="preview_second_field" jdbcType="VARCHAR"/>
+        <result property="sales" column="sales" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="CourseMap">
+        select
+          id, course_name, brief, price, price_tag, discounts, discounts_tag, course_description_mark_down, course_description, course_img_url, is_new, is_new_des, last_operator_id, auto_online_time, create_time, update_time, is_del, total_duration, course_list_img, status, sort_num, preview_first_field, preview_second_field, sales
+        from course
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="CourseMap">
+        select
+          id, course_name, brief, price, price_tag, discounts, discounts_tag, course_description_mark_down, course_description, course_img_url, is_new, is_new_des, last_operator_id, auto_online_time, create_time, update_time, is_del, total_duration, course_list_img, status, sort_num, preview_first_field, preview_second_field, sales
+        from course
+        <where>
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="courseName != null and courseName != ''">
+                and course_name = #{courseName}
+            </if>
+            <if test="brief != null and brief != ''">
+                and brief = #{brief}
+            </if>
+            <if test="price != null and price != ''">
+                and price = #{price}
+            </if>
+            <if test="priceTag != null and priceTag != ''">
+                and price_tag = #{priceTag}
+            </if>
+            <if test="discounts != null and discounts != ''">
+                and discounts = #{discounts}
+            </if>
+            <if test="discountsTag != null and discountsTag != ''">
+                and discounts_tag = #{discountsTag}
+            </if>
+            <if test="courseDescriptionMarkDown != null and courseDescriptionMarkDown != ''">
+                and course_description_mark_down = #{courseDescriptionMarkDown}
+            </if>
+            <if test="courseDescription != null and courseDescription != ''">
+                and course_description = #{courseDescription}
+            </if>
+            <if test="courseImgUrl != null and courseImgUrl != ''">
+                and course_img_url = #{courseImgUrl}
+            </if>
+            <if test="isNew != null">
+                and is_new = #{isNew}
+            </if>
+            <if test="isNewDes != null and isNewDes != ''">
+                and is_new_des = #{isNewDes}
+            </if>
+            <if test="lastOperatorId != null">
+                and last_operator_id = #{lastOperatorId}
+            </if>
+            <if test="autoOnlineTime != null">
+                and auto_online_time = #{autoOnlineTime}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="isDel != null">
+                and is_del = #{isDel}
+            </if>
+            <if test="totalDuration != null">
+                and total_duration = #{totalDuration}
+            </if>
+            <if test="courseListImg != null and courseListImg != ''">
+                and course_list_img = #{courseListImg}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="sortNum != null">
+                and sort_num = #{sortNum}
+            </if>
+            <if test="previewFirstField != null and previewFirstField != ''">
+                and preview_first_field = #{previewFirstField}
+            </if>
+            <if test="previewSecondField != null and previewSecondField != ''">
+                and preview_second_field = #{previewSecondField}
+            </if>
+            <if test="sales != null">
+                and sales = #{sales}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from course
+        <where>
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="courseName != null and courseName != ''">
+                and course_name = #{courseName}
+            </if>
+            <if test="brief != null and brief != ''">
+                and brief = #{brief}
+            </if>
+            <if test="price != null and price != ''">
+                and price = #{price}
+            </if>
+            <if test="priceTag != null and priceTag != ''">
+                and price_tag = #{priceTag}
+            </if>
+            <if test="discounts != null and discounts != ''">
+                and discounts = #{discounts}
+            </if>
+            <if test="discountsTag != null and discountsTag != ''">
+                and discounts_tag = #{discountsTag}
+            </if>
+            <if test="courseDescriptionMarkDown != null and courseDescriptionMarkDown != ''">
+                and course_description_mark_down = #{courseDescriptionMarkDown}
+            </if>
+            <if test="courseDescription != null and courseDescription != ''">
+                and course_description = #{courseDescription}
+            </if>
+            <if test="courseImgUrl != null and courseImgUrl != ''">
+                and course_img_url = #{courseImgUrl}
+            </if>
+            <if test="isNew != null">
+                and is_new = #{isNew}
+            </if>
+            <if test="isNewDes != null and isNewDes != ''">
+                and is_new_des = #{isNewDes}
+            </if>
+            <if test="lastOperatorId != null">
+                and last_operator_id = #{lastOperatorId}
+            </if>
+            <if test="autoOnlineTime != null">
+                and auto_online_time = #{autoOnlineTime}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="isDel != null">
+                and is_del = #{isDel}
+            </if>
+            <if test="totalDuration != null">
+                and total_duration = #{totalDuration}
+            </if>
+            <if test="courseListImg != null and courseListImg != ''">
+                and course_list_img = #{courseListImg}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="sortNum != null">
+                and sort_num = #{sortNum}
+            </if>
+            <if test="previewFirstField != null and previewFirstField != ''">
+                and preview_first_field = #{previewFirstField}
+            </if>
+            <if test="previewSecondField != null and previewSecondField != ''">
+                and preview_second_field = #{previewSecondField}
+            </if>
+            <if test="sales != null">
+                and sales = #{sales}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into course(course_name, brief, price, price_tag, discounts, discounts_tag, course_description_mark_down, course_description, course_img_url, is_new, is_new_des, last_operator_id, auto_online_time, create_time, update_time, is_del, total_duration, course_list_img, status, sort_num, preview_first_field, preview_second_field, sales)
+        values (#{courseName}, #{brief}, #{price}, #{priceTag}, #{discounts}, #{discountsTag}, #{courseDescriptionMarkDown}, #{courseDescription}, #{courseImgUrl}, #{isNew}, #{isNewDes}, #{lastOperatorId}, #{autoOnlineTime}, #{createTime}, #{updateTime}, #{isDel}, #{totalDuration}, #{courseListImg}, #{status}, #{sortNum}, #{previewFirstField}, #{previewSecondField}, #{sales})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into course(course_name, brief, price, price_tag, discounts, discounts_tag, course_description_mark_down, course_description, course_img_url, is_new, is_new_des, last_operator_id, auto_online_time, create_time, update_time, is_del, total_duration, course_list_img, status, sort_num, preview_first_field, preview_second_field, sales)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.courseName}, #{entity.brief}, #{entity.price}, #{entity.priceTag}, #{entity.discounts}, #{entity.discountsTag}, #{entity.courseDescriptionMarkDown}, #{entity.courseDescription}, #{entity.courseImgUrl}, #{entity.isNew}, #{entity.isNewDes}, #{entity.lastOperatorId}, #{entity.autoOnlineTime}, #{entity.createTime}, #{entity.updateTime}, #{entity.isDel}, #{entity.totalDuration}, #{entity.courseListImg}, #{entity.status}, #{entity.sortNum}, #{entity.previewFirstField}, #{entity.previewSecondField}, #{entity.sales})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into course(course_name, brief, price, price_tag, discounts, discounts_tag, course_description_mark_down, course_description, course_img_url, is_new, is_new_des, last_operator_id, auto_online_time, create_time, update_time, is_del, total_duration, course_list_img, status, sort_num, preview_first_field, preview_second_field, sales)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.courseName}, #{entity.brief}, #{entity.price}, #{entity.priceTag}, #{entity.discounts}, #{entity.discountsTag}, #{entity.courseDescriptionMarkDown}, #{entity.courseDescription}, #{entity.courseImgUrl}, #{entity.isNew}, #{entity.isNewDes}, #{entity.lastOperatorId}, #{entity.autoOnlineTime}, #{entity.createTime}, #{entity.updateTime}, #{entity.isDel}, #{entity.totalDuration}, #{entity.courseListImg}, #{entity.status}, #{entity.sortNum}, #{entity.previewFirstField}, #{entity.previewSecondField}, #{entity.sales})
+        </foreach>
+        on duplicate key update
+        course_name = values(course_name),
+        brief = values(brief),
+        price = values(price),
+        price_tag = values(price_tag),
+        discounts = values(discounts),
+        discounts_tag = values(discounts_tag),
+        course_description_mark_down = values(course_description_mark_down),
+        course_description = values(course_description),
+        course_img_url = values(course_img_url),
+        is_new = values(is_new),
+        is_new_des = values(is_new_des),
+        last_operator_id = values(last_operator_id),
+        auto_online_time = values(auto_online_time),
+        create_time = values(create_time),
+        update_time = values(update_time),
+        is_del = values(is_del),
+        total_duration = values(total_duration),
+        course_list_img = values(course_list_img),
+        status = values(status),
+        sort_num = values(sort_num),
+        preview_first_field = values(preview_first_field),
+        preview_second_field = values(preview_second_field),
+        sales = values(sales)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update course
+        <set>
+            <if test="courseName != null and courseName != ''">
+                course_name = #{courseName},
+            </if>
+            <if test="brief != null and brief != ''">
+                brief = #{brief},
+            </if>
+            <if test="price != null and price != ''">
+                price = #{price},
+            </if>
+            <if test="priceTag != null and priceTag != ''">
+                price_tag = #{priceTag},
+            </if>
+            <if test="discounts != null and discounts != ''">
+                discounts = #{discounts},
+            </if>
+            <if test="discountsTag != null and discountsTag != ''">
+                discounts_tag = #{discountsTag},
+            </if>
+            <if test="courseDescriptionMarkDown != null and courseDescriptionMarkDown != ''">
+                course_description_mark_down = #{courseDescriptionMarkDown},
+            </if>
+            <if test="courseDescription != null and courseDescription != ''">
+                course_description = #{courseDescription},
+            </if>
+            <if test="courseImgUrl != null and courseImgUrl != ''">
+                course_img_url = #{courseImgUrl},
+            </if>
+            <if test="isNew != null">
+                is_new = #{isNew},
+            </if>
+            <if test="isNewDes != null and isNewDes != ''">
+                is_new_des = #{isNewDes},
+            </if>
+            <if test="lastOperatorId != null">
+                last_operator_id = #{lastOperatorId},
+            </if>
+            <if test="autoOnlineTime != null">
+                auto_online_time = #{autoOnlineTime},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="isDel != null">
+                is_del = #{isDel},
+            </if>
+            <if test="totalDuration != null">
+                total_duration = #{totalDuration},
+            </if>
+            <if test="courseListImg != null and courseListImg != ''">
+                course_list_img = #{courseListImg},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="sortNum != null">
+                sort_num = #{sortNum},
+            </if>
+            <if test="previewFirstField != null and previewFirstField != ''">
+                preview_first_field = #{previewFirstField},
+            </if>
+            <if test="previewSecondField != null and previewSecondField != ''">
+                preview_second_field = #{previewSecondField},
+            </if>
+            <if test="sales != null">
+                sales = #{sales},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from course where id = #{id}
+    </delete>
+
+</mapper>
+

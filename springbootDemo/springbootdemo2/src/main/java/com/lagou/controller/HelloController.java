@@ -16,11 +16,16 @@ public class HelloController {
         return "hello spring boot";
     }
 
+
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
 
     @RequestMapping("/jdbc")
     public String jdbc(){
         return jdbcTemplate.toString();
     }
+
+
+
 }

@@ -1,4 +1,4 @@
-package com.lagou.bootmybatis.pojo;
+package com.lagou.bootmybatis.entity;
 
 import java.util.Date;
 import java.io.Serializable;
@@ -320,6 +320,9 @@ public class Course implements Serializable {
 
     public void setPreviewSecondField(String previewSecondField) {
         this.previewSecondField = previewSecondField;
+    }
+
+    public Course() {
     }
 
     public Integer getSales() {

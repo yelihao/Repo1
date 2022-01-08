@@ -17,7 +17,6 @@ public class SpringBootDemo1Application {
     public static void main(String[] args) {
         //样本代码，即所有springboot的启动类都一样
         SpringApplication.run(SpringBootDemo1Application.class,args);
-
     }
 
 }

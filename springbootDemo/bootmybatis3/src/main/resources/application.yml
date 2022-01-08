@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306
+    url: jdbc:mysql://localhost:3306/edu?serverTimezone=UTC&characterEncoding=UTF-8
     username: root
     password: 123
   redis:
@@ -13,8 +13,17 @@ spring:
         max-idle: 20    #连接池中最大的空闲连接数
         min-idle: 2     #连接池中最小的空闲连接数
     connect-timeout: 3000 #连接超时时间
+  thymeleaf:
+    cache: true   #如果在开发阶段，建议false关闭缓存；生产环境下建议开启缓存.其他一般不需要管
+    #templates文件夹下:不对用户开放，只能通过转发方式访问
+
 
 mybatis:
   configuration:
     map-underscore-to-camel-case: true      #    开启驼峰命名法
-  mapper-locations: classpath:mapper/*.xml
+  mapper-locations: classpath:mapper/*.xml    #就会将resources下的所有mapper文件加载
+  type-aliases-package: com.lagou.bootmybatis.pojo  #配置xml映射文件中指定的实体类别名
+
+
+
+

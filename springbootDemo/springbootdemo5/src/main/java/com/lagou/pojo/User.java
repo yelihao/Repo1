@@ -10,55 +10,57 @@ import lombok.Data;
  */
 @Data
 public class User implements Serializable {
-    /**
-     * 主键
-     */
-    private Long id;
-
-    /**
-     * 订单号
-     */
-    private String orderNo;
-
+    private static final long serialVersionUID = 996678063241155102L;
     /**
      * 用户id
      */
-    private Integer userId;
-
+    private Integer id;
     /**
-     * 课程id，根据订单中的课程类型来选择
+     * 用户昵称
      */
-    private Integer courseId;
-
+    private String name;
     /**
-     * 活动课程id
+     * 用户头像地址
      */
-    private Integer activityCourseId;
-
+    private String portrait;
     /**
-     * 订单来源类型: 1 用户下单购买 2 后台添加专栏
+     * 注册手机
      */
-    private Byte sourceType;
-
+    private String phone;
     /**
-     * 当前状态: 0已创建 10未支付 20已支付 30已取消 40已过期 
+     * 用户密码（可以为空，支持只用验证码注册、登录）
      */
-    private Byte status;
-
+    private String password;
     /**
-     * 创建时间
+     * 注册ip
      */
-    private Date createTime;
-
+    private String regIp;
     /**
-     * 更新时间
+     * 是否有效用户
      */
-    private Date updateTime;
-
+    private String accountNonExpired;
+    /**
+     * 账号是否未过期
+     */
+    private String credentialsNonExpired;
+    /**
+     * 是否未锁定
+     */
+    private String accountNonLocked;
+    /**
+     * 用户状态：ENABLE能登录，DISABLE不能登录
+     */
+    private String status;
     /**
      * 是否删除
      */
-    private Byte isDel;
-
-    private static final long serialVersionUID = 1L;
+    private String isDel;
+    /**
+     * 注册时间
+     */
+    private Date createTime;
+    /**
+     * 记录更新时间
+     */
+    private Date updateTime;
 }

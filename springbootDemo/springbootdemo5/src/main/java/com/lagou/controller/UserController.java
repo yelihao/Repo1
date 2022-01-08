@@ -14,6 +14,13 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
+    @GetMapping("/find/{id}")
+    public User findById(@PathVariable Integer id){
+        return userService.findById(id);
+    }
+
+    /*
     @GetMapping("/find")
     public List<User> findAll(){
         return userService.findAll();
@@ -35,5 +42,5 @@ public class UserController {
         userService.insert(user);
         return "success";
     }
-
+    */
 }

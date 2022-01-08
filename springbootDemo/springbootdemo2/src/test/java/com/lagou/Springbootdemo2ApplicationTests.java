@@ -2,6 +2,7 @@ package com.lagou;
 
 import com.lagou.controller.HelloController;
 import com.lagou.pojo.Person;
+import com.lagou.pojo.Student;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -44,5 +45,14 @@ class Springbootdemo2ApplicationTests {
     public void testConfig(){
         System.out.println(applicationContext.containsBean("myservice"));
     }
+
+    @Autowired
+    private Student student;
+
+    @Test
+    public void showStudentInfo(){
+        System.out.println(student);
+    }
+
 
 }

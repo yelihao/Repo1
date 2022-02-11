@@ -1,0 +1,21 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: edu-user-boot
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/edu_user?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: 123
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka #,http://localhost:7002/eureka
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    lease-renewal-interval-in-seconds: 30       #服务续约任务的调用间隔时间，默认为30
+    lease-expiration-duration-in-seconds: 90    #服务是小的时间默认90s
